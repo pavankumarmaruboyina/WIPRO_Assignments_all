@@ -1,0 +1,13 @@
+package com.example.appointment_service.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@FeignClient(name = "doctor-service", url = "http://localhost:2222") 
+public interface DoctorFeignClient {
+
+    @PostMapping("/doctors/slots/{slotId}/lock")
+    ResponseEntity<String> lockSlot(@PathVariable("slotId") String slotId);
+}

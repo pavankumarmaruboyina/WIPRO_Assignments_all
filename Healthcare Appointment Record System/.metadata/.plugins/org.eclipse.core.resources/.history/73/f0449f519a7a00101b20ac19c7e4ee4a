@@ -1,0 +1,27 @@
+package com.example.appointment_service.controller;
+
+import com.example.appointment_service.model.Appointment;
+import com.example.appointment_service.service.AppointmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/appointments")
+public class AppointmentController {
+
+    @Autowired
+    private AppointmentService appointmentService;
+
+    @PostMapping("/book")
+    public ResponseEntity<?> bookAppointment(@RequestBody Appointment appointment) {
+        try {
+            Appointment result = appointmentService.bookAppointment(appointment);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(409).body(e.getMessage()); // Conflict if slot locking fails
+        }
+    }
+
+    // Additional CRUD APIs can be added here...
+}

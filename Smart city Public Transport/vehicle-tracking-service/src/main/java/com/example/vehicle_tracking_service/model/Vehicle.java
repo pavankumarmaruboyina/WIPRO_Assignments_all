@@ -1,0 +1,26 @@
+package com.example.vehicle_tracking_service.model;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Vehicle {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String fleetCode;
+    private String routeId;
+    private int capacity;
+    private String featuresJson;
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getFleetCode() { return fleetCode; }
+    public void setFleetCode(String fleetCode) { this.fleetCode = fleetCode; }
+    public String getRouteId() { return routeId; }
+    public void setRouteId(String routeId) { this.routeId = routeId; }
+    public int getCapacity() { return capacity; }
+    public void setCapacity(int capacity) { this.capacity = capacity; }
+    public String getFeaturesJson() { return featuresJson; }
+    public void setFeaturesJson(String featuresJson) { this.featuresJson = featuresJson; }
+}

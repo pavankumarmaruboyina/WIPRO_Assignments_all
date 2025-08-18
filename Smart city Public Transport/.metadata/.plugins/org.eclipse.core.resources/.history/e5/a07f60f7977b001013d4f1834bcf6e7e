@@ -1,0 +1,5 @@
+package com.example.vehicle_tracking_service.repository;
+
+public class VehiclePositionRepository {
+
+}

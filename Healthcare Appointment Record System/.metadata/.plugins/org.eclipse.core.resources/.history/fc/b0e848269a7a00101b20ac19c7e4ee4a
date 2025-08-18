@@ -1,0 +1,53 @@
+package com.example.appointment_service.service;
+
+import com.example.appointment_service.model.Appointment;
+import com.example.appointment_service.repository.AppointmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class AppointmentService {
+
+    @Autowired
+    private AppointmentRepository appointmentRepository;
+
+    public Appointment createAppointment(Appointment appointment) {
+        appointment.setStatus("BOOKED");
+        return appointmentRepository.save(appointment);
+    }
+
+    public List<Appointment> getAllAppointments() {
+        return appointmentRepository.findAll();
+    }
+
+    public Optional<Appointment> getAppointmentById(String id) {
+        return appointmentRepository.findById(id);
+    }
+
+    public List<Appointment> getAppointmentsByDoctorId(String doctorId) {
+        return appointmentRepository.findByDoctorId(doctorId);
+    }
+
+    public List<Appointment> getAppointmentsByPatientId(String patientId) {
+        return appointmentRepository.findByPatientId(patientId);
+    }
+
+    public Appointment updateAppointment(String id, Appointment updatedAppointment) {
+        return appointmentRepository.findById(id)
+            .map(appointment -> {
+                appointment.setPatientId(updatedAppointment.getPatientId());
+                appointment.setDoctorId(updatedAppointment.getDoctorId());
+                appointment.setAppointmentTime(updatedAppointment.getAppointmentTime());
+                appointment.setStatus(updatedAppointment.getStatus());
+                return appointmentRepository.save(appointment);
+            })
+            .orElseThrow(() -> new RuntimeException("Appointment not found"));
+    }
+
+    public void deleteAppointment(String id) {
+        appointmentRepository.deleteById(id);
+    }
+}
