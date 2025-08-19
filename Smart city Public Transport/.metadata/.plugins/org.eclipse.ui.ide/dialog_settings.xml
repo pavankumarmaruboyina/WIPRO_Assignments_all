@@ -6,6 +6,9 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\Smart city Public Transport\notification-service"/>
+			<item value="D:\Smart city Public Transport\user-service"/>
+			<item value="D:\Smart city Public Transport\ticketing-service"/>
 			<item value="D:\Smart city Public Transport\vehicle-tracking-service"/>
 			<item value="D:\Smart city Public Transport\route-service"/>
 			<item value="D:\Smart city Public Transport\api-gateway-online-plat"/>

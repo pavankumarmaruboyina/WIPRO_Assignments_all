@@ -1,0 +1,5 @@
+package com.example.ticketing_service.controller;
+
+public class TicketController {
+
+}
