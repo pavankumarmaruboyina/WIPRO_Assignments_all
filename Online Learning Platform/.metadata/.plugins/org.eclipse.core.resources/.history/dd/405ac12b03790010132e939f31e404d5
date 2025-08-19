@@ -1,0 +1,53 @@
+package com.example.user_service.controller;
+
+import com.example.user_service.service.UserService;
+import com.example.user_service.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    // CREATE user
+    @PostMapping("/register")
+    public User register(@RequestBody User user) {
+        return userService.register(user);
+    }
+
+    // READ all users
+    @GetMapping("/users")
+    public List<User> getUsers() {
+        return userService.getAllUsers();
+    }
+
+    // READ user by ID
+    @GetMapping("/users/{id}")
+    public Optional<User> getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+
+    // UPDATE user completely (full object)
+    @PutMapping("/users/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        return userService.updateUser(id, updatedUser);
+    }
+
+    // PARTIAL UPDATE (only some fields)
+    @PatchMapping("/users/{id}")
+    public User partiallyUpdateUser(@PathVariable Long id, @RequestBody User partialUser) {
+        return userService.patchUser(id, partialUser);
+    }
+
+    // DELETE user by ID
+    @DeleteMapping("/users/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        return userService.deleteUser(id);
+    }
+}

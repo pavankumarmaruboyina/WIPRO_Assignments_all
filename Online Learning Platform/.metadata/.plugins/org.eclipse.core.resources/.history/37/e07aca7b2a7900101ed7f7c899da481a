@@ -1,0 +1,5 @@
+package com.example.classroom_service.model;
+
+public class Classroom {
+
+}

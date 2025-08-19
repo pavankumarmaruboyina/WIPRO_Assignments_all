@@ -1,0 +1,35 @@
+public Optional<User> getUserById(Long id) {
+    return userRepository.findById(id);
+}
+
+public User updateUser(Long id, User updatedUser) {
+    return userRepository.findById(id)
+            .map(user -> {
+                user.setUsername(updatedUser.getUsername());
+                user.setEmail(updatedUser.getEmail());
+                user.setPassword(updatedUser.getPassword());
+                user.setRole(updatedUser.getRole());
+                return userRepository.save(user);
+            })
+            .orElseThrow(() -> new RuntimeException("User not found with id " + id));
+}
+
+public User patchUser(Long id, User partialUser) {
+    return userRepository.findById(id)
+            .map(user -> {
+                if (partialUser.getUsername() != null) user.setUsername(partialUser.getUsername());
+                if (partialUser.getEmail() != null) user.setEmail(partialUser.getEmail());
+                if (partialUser.getPassword() != null) user.setPassword(partialUser.getPassword());
+                if (partialUser.getRole() != null) user.setRole(partialUser.getRole());
+                return userRepository.save(user);
+            })
+            .orElseThrow(() -> new RuntimeException("User not found with id " + id));
+}
+
+public String deleteUser(Long id) {
+    if (!userRepository.existsById(id)) {
+        throw new RuntimeException("User not found with id " + id);
+    }
+    userRepository.deleteById(id);
+    return "User with id " + id + " deleted successfully.";
+}

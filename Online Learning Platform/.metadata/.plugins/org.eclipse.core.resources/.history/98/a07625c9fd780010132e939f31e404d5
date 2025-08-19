@@ -1,0 +1,15 @@
+spring.application.name=user-service
+server.port=8081
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/your_database_name
+spring.datasource.username=root
+spring.datasource.password=12345
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+# Optional but useful for debugging
+spring.jpa.show-sql=true
+
+# If you want to use HikariCP settings or connection pool configurations, you can add them here.
